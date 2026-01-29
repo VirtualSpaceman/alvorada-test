@@ -53,7 +53,8 @@ Analyzes a bank statement CSV file and returns detailed financial insights.
 - Field name: `statement`
 - File format: CSV
 
-**Required CSV Format:**
+**CSV Format:**
+The API accepts any valid CSV file. Example:
 ```csv
 date,description,amount,type,balance
 2025-10-01,DIRECT DEPOSIT - STARTUP INC,2850.00,credit,2850.00
@@ -103,24 +104,18 @@ curl -X POST http://localhost:3000/api/analyze \
 
 ```
 ├── src/
-│   ├── config/
-│   │   └── config.ts           # Environment configuration
-│   ├── controllers/
-│   │   └── analysisController.ts  # Request handlers
-│   ├── middleware/
-│   │   ├── errorHandler.ts     # Error handling
-│   │   └── upload.ts           # File upload configuration
-│   ├── routes/
-│   │   └── index.ts            # API routes
+│   ├── config/config.ts                  # Environment configuration
+│   ├── controllers/analysisController.ts  # Request handlers
+│   ├── middleware/errorHandler.ts        # Error handling & async wrapper
+│   ├── routes/index.ts               # API routes
 │   ├── services/
-│   │   ├── csvParser.ts        # CSV parsing logic
-│   │   └── openai.ts           # OpenAI integration
-│   ├── types/
-│   │   └── index.ts            # TypeScript interfaces
-│   └── index.ts                # Application entry point
-├── optimized_prompt.txt        # Optimized AI prompt
-├── .env.example                # Environment template
-├── tsconfig.json               # TypeScript configuration
-└── package.json                # Dependencies
+│   │   ├── csvParser.ts              # CSV parsing
+│   │   └── openai.ts                 # OpenAI integration with retry logic
+│   ├── types/index.ts                # TypeScript interfaces
+│   └── index.ts                      # Application entry point
+├── optimized_prompt.txt              # AI prompt template
+├── package.json                      # Dependencies
+├── tsconfig.json                     # TypeScript configuration
+└── .env.example                      # Environment variables template
 ```
 
